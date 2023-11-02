@@ -1,6 +1,6 @@
 # CSA0483-OS
 
-1-> SYSTEM CALL INVOKING:-
+#1-> SYSTEM CALL INVOKING:-
 
    ALGORITHAMIC STEPS:-
 
@@ -26,7 +26,7 @@
  
  9)End the program.
    
-2->COPY THE CONTENT OF ONE FILE TO OTHER:-
+#2->COPY THE CONTENT OF ONE FILE TO OTHER:-
 
   ALGORITHAMIC STEPS:-
   
@@ -51,7 +51,7 @@
 
  9)Display a success message indicating that the file was copied successfully.
 
- 3-> CPU SCHEDULING PROGRAM USING FCFS:-
+#3-> CPU SCHEDULING PROGRAM USING FCFS:-
 
 ALGORITHM STEPS:-
 
