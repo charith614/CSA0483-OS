@@ -198,3 +198,217 @@ ALGORITM STEPS:-
    i. If the process's burst time becomes 0, calculate its completion time, turnaround time, and waiting time.
 
 6)Display the process details, including their arrival time, burst time, priority, completion time, turnaround time, and waiting time for all processes.
+
+
+#7-> IMPLEMENTATION OF NON PREEMPTIVE SJF ALGORITHM:-
+
+ALGORITHM STEPS:-
+
+1)Create an array of struct Process to store process information.
+
+2)For each process i from 1 to n:
+    
+   a.Read the arrival time for the process i.
+   
+   b.Read the burst time for the process i.
+   
+   c.Initialize waitingTime[i] and turnaroundTime[i] to 0.
+      Set currentTime to 0.
+
+3)Repeat until all processes are executed:
+   
+   a.Initialize shortest to -1.
+   
+   b.For each process j from 0 to n - 1:
+      
+   i. If processes[j].arrivalTime <= currentTime and processes[j].burstTime > 0:
+     
+   - If shortest is -1 or processes[j].burstTime < processes[shortest].burstTime:
+   
+   - Set shortest to j.
+   
+   c.If shortest is -1:
+
+   No process is available at this time, so increment currentTime by 1 (idle time).
+
+   d. Else:
+
+   i. Calculate waitingTime[shortest] as (currentTime - processes[shortest].arrivalTime).
+   
+   ii. Calculate turnaroundTime[shortest] as (waitingTime[shortest] + processes[shortest].burstTime).
+   
+   iii. Increment currentTime by processes[shortest].burstTime.
+   
+   iv. Set processes[shortest].burstTime to 0 to mark the process as completed.
+     
+4)Calculate the totalWaitingTime and totalTurnaroundTime by summing up the respective values for all processes.
+
+5)Calculate the averageWaitingTime as (totalWaitingTime / n).
+
+6)Calculate the averageTurnaroundTime as (totalTurnaroundTime / n).
+
+7)Display the process-wise waiting time, turnaround time, average waiting time, and average turnaround time.
+
+8)End.
+
+
+#8-> SIMULATING ROUND ROBIN SCHEDULING ALGORITHM:-
+
+ALGORITHM STEPS:-
+
+1)Create an array of struct Process to store process information.
+
+2)For each process i from 1 to n:
+   
+   a. Read the burst time for the process i.
+   
+   b. Initialize the remainingTime for process i with the burst time.
+
+3)Set currentTime to 0.
+
+4)Initialize remainingProcesses to n.
+
+5)Repeat until all processes are completed (remainingProcesses > 0):
+   
+   a. For each process i from 0 to n - 1:
+   
+   i. If processes[i].remainingTime is greater than 0:
+    
+   - Calculate executeTime as the minimum of quantum and processes[i].remainingTime.
+   
+   - Decrement processes[i].remainingTime by executeTime.
+   
+   - Increment currentTime by executeTime.
+   
+   - Display that process i is executing for executeTime units, with its remaining time.
+   
+   - If processes[i].remainingTime becomes 0:
+   
+   - Decrement remainingProcesses by 1.
+   
+   - Display that process i has completed its execution.
+
+6)Display the completion of all processes.
+
+7)End.
+
+
+#9-> INTER-PROCESS COMMUNICATION USING SHARED MEMORY:-
+
+ALGORITHM STEPS:-
+
+=>Producer (writer.c):
+
+ 1)Start
+
+ 2)Generate a unique key for the shared memory using ftok.
+ 
+ 3)Create a shared memory segment using shmget.
+ 
+ 4)Attach to the shared memory segment using shmat.
+ 
+ 5)Read an integer value from the user.
+ 
+ 6)Write the integer value to the shared memory.
+ 
+ 7)Detach from the shared memory using shmdt.
+ 
+ 8)End.
+
+=>Consumer (reader.c):
+
+1)Start
+
+2)Generate the same unique key for the shared memory using ftok.
+
+3)Get the shared memory segment using shmget.
+
+4)Attach to the shared memory segment using shmat.
+
+5)Read the integer value from the shared memory.
+
+6)Display the value read from the shared memory.
+
+7)Detach from the shared memory using shmdt.
+
+8)Remove the shared memory segment using shmctl.
+
+9)End.
+
+
+#10-> INTER-PROCESS COMMUNICATION USING MESSAGE QUEUE:-
+
+ALGORITHM STEPS:-
+
+=>Sender (producer.c):
+
+  1)Start
+  
+  2)Generate a unique key for the message queue using ftok.
+  
+  3)Create or get a message queue using msgget.
+  
+  4)Define a message structure with a message type (greater than 0) and a message text.
+  
+  5)Prompt the user to enter a message and store it in the message structure.
+  
+  6)Send the message to the message queue using msgsnd.
+  
+  7)End.
+
+=>Receiver (consumer.c):
+
+  1)Start
+
+  2)Generate the same unique key for the message queue using ftok.
+  
+  3)Get the message queue using msgget.
+  
+  4)Define a message structure with a message type (greater than 0) and a message text.
+  
+  5)Receive a message from the message queue using msgrcv.
+  
+  6)Display the received message from the message structure.
+  
+  7)Remove the message queue using msgctl.
+  
+  8)End.
+
+
+  #11-> CONCEPT OF MULTITHREADING:-
+
+  ALGORITHM STEPS:-
+
+ =>Main Program:
+
+   1)Start
+   
+   2)Define constants NUM_THREADS (number of threads) and MAX_COUNT (maximum count per thread).  
+   
+   3)Initialize a global integer variable counter to 0 to serve as a shared counter.
+   
+   4)Create a mutex using pthread_mutex_t mutex to protect the critical section.
+   
+   5)Create an array of pthread_t objects named threads.
+   
+   6)Create NUM_THREADS threads, each running the thread_function.
+   
+   7)Wait for all threads to complete using pthread_join.
+   
+   8)Display the final value of the shared counter.
+   
+   9)End.
+=>Thread Function (thread_function):
+
+ 1)Start
+ 
+ 2)For each thread, execute the following loop MAX_COUNT times:
+
+   a. Lock the mutex using pthread_mutex_lock to enter the critical section.
+   
+   b. Increment the counter by 1.
+   
+   c. Unlock the mutex using pthread_mutex_unlock to exit the critical section.
+
+ 3)End.
+
