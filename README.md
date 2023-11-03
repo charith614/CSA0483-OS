@@ -412,3 +412,61 @@ ALGORITHM STEPS:-
 
  3)End.
 
+
+#12-> SIMULATING THE CONCEPT OF DINING-PHILOSOPHERS PROBLEM:-
+
+ALGORITHM STEPS:-
+
+=>Main Program:
+
+1)Start
+
+2)Create an array of pthread_t objects called philosophers.
+
+3)Initialize an array of semaphores called forks, with one semaphore per philosopher.
+
+4)Initialize a semaphore called mutex to control access to the forks.
+
+5)Seed the random number generator.
+
+6)For each philosopher from 0 to NUM_PHILOSOPHERS - 1, create a thread running the philosopher function and passing its ID as an argument.
+
+7)Wait for all philosopher threads to complete using pthread_join.
+
+8)End.
+
+=>Philosopher Function (philosopher):
+
+1)Start
+
+2)Extract the philosopher's ID from the argument.
+
+3)Define variables left_fork and right_fork for the indices of the philosopher's left and right forks.
+
+4)Repeat indefinitely (philosopher's lifecycle):
+   
+   a. Think: Output that the philosopher is thinking.
+   
+   b. Sleep for a random duration to simulate thinking.
+   
+   c. Pick up left fork: Wait on the forks semaphore for the left fork.
+   
+   d. Output that the philosopher picked up the left fork.
+   
+   e. Pick up right fork: Wait on the forks semaphore for the right fork.
+   
+   f. Output that the philosopher picked up the right fork.
+   
+   g. Eat: Output that the philosopher is eating.
+   
+   h. Sleep for a random duration to simulate eating.
+   
+   i. Put down right fork: Signal the forks semaphore for the right fork.
+   
+   j. Output that the philosopher put down the right fork.
+   
+   k. Put down left fork: Signal the forks semaphore for the left fork.
+   
+   l. Output that the philosopher put down the left fork.
+
+5)End
