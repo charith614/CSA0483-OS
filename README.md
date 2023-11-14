@@ -708,3 +708,70 @@ Write the cleared employee data using fwrite.
 6) Close File:
 
      -Close the file using fclose.
+
+
+#18-> SIMULATING PRODUCER-CONSUMER PROBLEM USING SEMAPHORES:-
+
+ALGORITHM STEPS:-
+
+1) Initialize Semaphores and Mutex:
+
+    -Initialize semaphores empty and full to the buffer size and 0, respectively.
+
+    -Initialize a mutex for mutual exclusion.
+
+2)Initialize Shared Buffer and Indices:
+
+   -Initialize the shared buffer and set producer (in) and consumer (out) indices to 0.
+
+3) Producer Function:
+
+    -In the producer thread function:
+
+   -Generate a random item.
+
+   -Wait for an empty slot in the buffer (sem_wait(&empty)).
+
+   -Acquire the mutex for mutual exclusion (pthread_mutex_lock(&mutex)).
+
+   -Insert the item into the buffer.
+
+   -Update the producer index (in).
+
+   -Print a message indicating the produced item.
+
+   -Release the mutex (pthread_mutex_unlock(&mutex)).
+
+   -Signal that a slot in the buffer is now full (sem_post(&full)).
+
+   -Sleep to simulate variable production time.
+ 
+ 4) Consumer Function:
+ 
+    In the consumer thread function:
+
+      -Wait for a filled slot in the buffer (sem_wait(&full)).
+
+      -Acquire the mutex for mutual exclusion (pthread_mutex_lock(&mutex)).
+
+      -Remove the item from the buffer.
+
+      -Update the consumer index (out).
+
+      -Print a message indicating the consumed item.
+
+      -Release the mutex (pthread_mutex_unlock(&mutex)).
+
+      -Signal that a slot in the buffer is now empty (sem_post(&empty)).
+
+      -Sleep to simulate variable consumption time.
+
+5) Main Function:
+
+    -Initialize threads for the producer and consumer functions.
+
+    -Join the threads (this will never be reached in this simple example).
+
+6) Clean Up:
+
+   -Destroy semaphores and mutex.
