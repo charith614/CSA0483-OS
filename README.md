@@ -775,3 +775,68 @@ ALGORITHM STEPS:-
 6) Clean Up:
 
    -Destroy semaphores and mutex.
+
+
+   #21-> IMPLEMENTING WORST FIT ALGORITHM OF MEMORY MANAGEMENT:-
+
+ALGORITHM STEPS:-
+
+Initialization
+  
+   1) Define a Free Block Structure:
+
+       -Create a structure to represent free memory blocks. This structure should have fields such as start (starting address of the block),
+        size (size of the block), and a pointer to the next free block.
+
+   2) Initialize Free Memory List:
+
+      -Create a pointer to the head of the free memory list.
+
+      -Initialize it with a single free block representing the entire available memory.
+
+   3) Allocation Function
+
+      -Define Allocation Function:
+
+      -Create a function to allocate memory using the worst fit algorithm.
+
+      -Traverse the free memory list to find the largest available block that can accommodate the process.
+
+      -If a suitable block is found, allocate memory and update the free memory list.
+
+   4) Allocate Memory:
+
+      -In the allocation function:
+
+      -Traverse the free memory list.
+
+      -Keep track of the worst fit (largest block).
+
+      -If a suitable block is found, allocate memory:
+
+      -Update the free memory list.
+
+      -Print allocation information.
+
+  5) Deallocation Function
+
+     -Define Deallocation Function:
+
+     -Create a function to deallocate memory.
+
+     -Create a new free block and add it to the free memory list.
+
+     -Print deallocation information.
+
+  6) Main Program
+
+     Main Function:
+
+     -In the main program:
+
+     -Initialize free memory.
+
+     -Allocate memory for processes.
+
+     -Deallocate memory.
+
